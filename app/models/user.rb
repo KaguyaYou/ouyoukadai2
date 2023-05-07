@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :favorites,dependent: :destroy
   has_many :book_comments,dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_books, through: :favorites, source: :book
 
   # フォローをした、一覧画面で使用
   has_many :relationships, class_name:"Relationship", foreign_key: :follower_id,dependent: :destroy
@@ -46,6 +48,8 @@ class User < ApplicationRecord
     end
   end
 
+
+  
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end

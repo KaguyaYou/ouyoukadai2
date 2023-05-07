@@ -9,11 +9,11 @@ class User < ApplicationRecord
   has_many :favorites,dependent: :destroy
   has_many :book_comments,dependent: :destroy
 
-  # フォローをした、されたの関係
+  # フォローをした、一覧画面で使用
   has_many :relationships, class_name:"Relationship", foreign_key: :follower_id,dependent: :destroy
   has_many :followings,through: :relationships, source: :followed
 
-  #一覧画面で使う
+  #フォローをされたとき　一覧画面で使う
   has_many :reverse_of_relationships, class_name: "Relationship",foreign_key: :followed_id,dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
 

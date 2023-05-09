@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chats/show'
   get 'relationships/followings'
   get 'relationships/followers'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -9,9 +10,9 @@ Rails.application.routes.draw do
     resources :book_comments,only:[:create,:destroy]
   end
 
-  resources :messages, only: [:create]
-  resources :rooms, only: [:create, :index, :show]
-
+  get 'chat/:id', to: 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
+  
 
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationships, only:[:create,:destroy]

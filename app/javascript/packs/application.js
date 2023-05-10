@@ -11,7 +11,16 @@ import "jquery"
 import "popper.js"
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
-import "../stylesheets/application" 
+import "../stylesheets/application"
+
+import jQuery from "jquery";
+
+import 'animate.css';
+import 'jquery.inview.js'
+
+global.$ = jQuery;
+window.$ = jQuery;
+
 
 Rails.start()
 Turbolinks.start()
